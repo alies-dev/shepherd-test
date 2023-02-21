@@ -16,5 +16,8 @@
             "type": "vcs",
             "url": "https://github.com/lptn/psalm"
         }
-    ]
+    ],
+    "scripts": {
+        "psalm": "vendor/bin/psalm"
+    }
 }
