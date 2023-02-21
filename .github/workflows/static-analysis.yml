@@ -29,24 +29,30 @@ jobs:
       - name: Install composer dependencies
         run: "composer update --no-interaction --no-progress --no-scripts --prefer-dist"
 
-      - name: Run Psalm
+      - name: Run Psalm (without shepherd)
+        run: ./vendor/bin/psalm --find-unused-psalm-suppress --output-format=github
+
+      - name: Run Psalm (default shepherd host, option without value)
         run: ./vendor/bin/psalm --find-unused-psalm-suppress --output-format=github --shepherd
 
-      - name: Run Psalm
+      - name: Run Psalm (--shepherd=shepherd.dev)
+        run: ./vendor/bin/psalm --find-unused-psalm-suppress --output-format=github --shepherd=shepherd.dev
+
+      - name: Run Psalm (--shepherd=https://shepherd.dev)
+        run: ./vendor/bin/psalm --find-unused-psalm-suppress --output-format=github --shepherd=https://shepherd.dev
+
+      - name: Run Psalm (default endpoint with hash)
+        run: ./vendor/bin/psalm --find-unused-psalm-suppress --output-format=github --shepherd=https://shepherd.dev/hooks/psalm#
+
+      - name: Run Psalm (custom endpoint with hash)
+        run: ./vendor/bin/psalm --find-unused-psalm-suppress --output-format=github --shepherd=https://custom-host.shepherd/hooks/psalm#
+
+      - name: Run Psalm (default shepherd host using PSALM_SHEPHERD_HOST)
         run: ./vendor/bin/psalm --find-unused-psalm-suppress --output-format=github --shepherd
         env:
           PSALM_SHEPHERD_HOST: shepherd.dev
 
-      - name: Run Psalm (default, no value)
+      - name: Run Psalm (custom shepherd host using PSALM_SHEPHERD_HOST, should fail)
         run: ./vendor/bin/psalm --find-unused-psalm-suppress --output-format=github --shepherd
         env:
-          PSALM_SHEPHERD_HOST: custom-domain.shepherd
-
-      - name: Run Psalm (shepherd.dev)
-        run: ./vendor/bin/psalm --find-unused-psalm-suppress --output-format=github --shepherd=shepherd.dev
-
-      - name: Run Psalm (https://shepherd.dev)
-        run: ./vendor/bin/psalm --find-unused-psalm-suppress --output-format=github --shepherd=https://shepherd.dev
-
-      - name: Run Psalm (custom endpoint with hash)
-        run: ./vendor/bin/psalm --find-unused-psalm-suppress --output-format=github --shepherd=https://shepherd.dev/hooks/psalm#
+          PSALM_SHEPHERD_HOST: custom-host.shepherd
