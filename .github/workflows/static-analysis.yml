@@ -31,3 +31,20 @@ jobs:
 
       - name: Run Psalm
         run: ./vendor/bin/psalm --find-unused-psalm-suppress --output-format=github --shepherd
+
+      - name: Run Psalm
+        run: ./vendor/bin/psalm --find-unused-psalm-suppress --output-format=github --shepherd
+        env: PSALM_SHEPHERD_HOST=shepherd.dev
+
+      - name: Run Psalm (default, no value)
+        run: ./vendor/bin/psalm --find-unused-psalm-suppress --output-format=github --shepherd
+        env: PSALM_SHEPHERD_HOST=custom-domain.shepherd
+
+      - name: Run Psalm (shepherd.dev)
+        run: ./vendor/bin/psalm --find-unused-psalm-suppress --output-format=github --shepherd=shepherd.dev
+
+      - name: Run Psalm (https://shepherd.dev)
+        run: ./vendor/bin/psalm --find-unused-psalm-suppress --output-format=github --shepherd=https://shepherd.dev
+
+      - name: Run Psalm (custom endpoint with hash)
+        run: ./vendor/bin/psalm --find-unused-psalm-suppress --output-format=github --shepherd=https://shepherd.dev/hooks/psalm#
