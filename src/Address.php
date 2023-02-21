@@ -10,4 +10,13 @@ final class Address
         public readonly string $addressLine1)
     {
     }
+
+    public function __toString(): string
+    {
+        return $this->country
+            .', '
+            .$this->city
+            .', '
+            .$this->addressLine1;
+    }
 }
