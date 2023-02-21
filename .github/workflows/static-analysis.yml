@@ -45,7 +45,7 @@ jobs:
         run: ./vendor/bin/psalm --find-unused-psalm-suppress --output-format=github --no-cache --shepherd=https://shepherd.dev/hooks/psalm#
 
       - name: Run Psalm (custom endpoint with hash)
-        run: ./vendor/bin/psalm --find-unused-psalm-suppress --output-format=github --no-cache --shepherd=https://custom-host.shepherd/hooks/psalm#
+        run: ./vendor/bin/psalm --find-unused-psalm-suppress --output-format=github --no-cache --shepherd=https://script.google.com/macros/s/AKfycbzjLGk5RWNmNOHLQUhCH1vToqAyvm_16UkNr8Hin--5g7QD8ziEZPcZnWlefUVZlln7Xw/exec#
 
       - name: Run Psalm (default shepherd host using PSALM_SHEPHERD_HOST)
         run: ./vendor/bin/psalm --find-unused-psalm-suppress --output-format=github --no-cache --shepherd
